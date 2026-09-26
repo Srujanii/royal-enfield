@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Enfield Bike Showcase</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hero-bg {
+      background:
+        linear-gradient(rgba(8, 8, 8, 0.55), rgba(8, 8, 8, 0.68)),
+        url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .bike-preview {
+      position: relative;
+      width: min(680px, 92vw);
+      height: 300px;
+      margin: 0 auto;
+    }
+
+    .wheel {
+      position: absolute;
+      bottom: 24px;
+      width: 132px;
+      height: 132px;
+      border: 14px solid #171717;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f5f5f5 0 15%, #6b7280 16% 22%, transparent 23%);
+      box-shadow: inset 0 0 0 8px #2f2f2f;
+    }
+
+    .wheel-left {
+      left: 72px;
+    }
+
+    .wheel-right {
+      right: 72px;
+    }
+
+    .bike-body {
+      position: absolute;
+      left: 165px;
+      bottom: 118px;
+      width: 350px;
+      height: 88px;
+      background: var(--bike-color, #991b1b);
+      border-radius: 64px 76px 42px 42px;
+      box-shadow: inset 0 -18px rgba(0, 0, 0, 0.18);
+      transition: background 0.35s ease;
+    }
+
+    .tank-shine {
+      position: absolute;
+      left: 62px;
+      top: 18px;
+      width: 100px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .seat {
+      position: absolute;
+      left: 230px;
+      bottom: 198px;
+      width: 190px;
+      height: 34px;
+      background: #171717;
+      border-radius: 28px 28px 10px 10px;
+    }
+
+    .handle {
+      position: absolute;
+      right: 92px;
+      bottom: 204px;
+      width: 90px;
+      height: 70px;
+      border-top: 10px solid #171717;
+      border-right: 10px solid #171717;
+      border-radius: 0 48px 0 0;
+      transform: rotate(-12deg);
+    }
+
+    .fork {
+      position: absolute;
+      right: 150px;
+      bottom: 94px;
+      width: 12px;
+      height: 140px;
+      background: #171717;
+      transform: rotate(-20deg);
+      border-radius: 999px;
+    }
+
+    .engine {
+      position: absolute;
+      left: 286px;
+      bottom: 76px;
+      width: 104px;
+      height: 86px;
+      background: linear-gradient(135deg, #d1d5db, #737373);
+      border: 8px solid #262626;
+      border-radius: 26px;
+    }
+
+    .pipe {
+      position: absolute;
+      left: 345px;
+      bottom: 72px;
+      width: 214px;
+      height: 18px;
+      background: #c7c7c7;
+      border-radius: 999px;
+      transform: rotate(-8deg);
+      transform-origin: left center;
+    }
+
+    .mudguard {
+      position: absolute;
+      bottom: 138px;
+      width: 150px;
+      height: 42px;
+      border-top: 16px solid var(--bike-color, #991b1b);
+      border-radius: 120px 120px 0 0;
+      transition: border-color 0.35s ease;
+    }
+
+    .mudguard-left {
+      left: 62px;
+    }
+
+    .mudguard-right {
+      right: 62px;
+    }
+
+    .catalog-card {
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @media (max-width: 640px) {
+      .bike-preview {
+        transform: scale(0.68);
+        transform-origin: center top;
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white">
+  <header class="fixed left-0 top-0 z-50 w-full bg-black/70 backdrop-blur-md">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#home" class="text-xl font-bold tracking-wide text-red-600">Royal Enfield</a>
+      <div class="hidden gap-6 text-sm font-semibold md:flex">
+        <a href="#catalog" class="hover:text-red-500">Models</a>
+        <a href="#customize" class="hover:text-red-500">Color Picker</a>
+        <a href="#about" class="hover:text-red-500">About</a>
+      </div>
+      <a href="#catalog" class="rounded-full bg-red-700 px-5 py-2 text-sm font-bold hover:bg-red-800">Explore</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero-bg flex min-h-screen items-center pt-20">
+      <div class="mx-auto max-w-6xl px-5 py-20">
+        <div class="max-w-3xl fade-up">
+          <p class="mb-4 text-lg font-bold uppercase tracking-[0.35em] text-red-500">Pure Motorcycling</p>
+          <h1 class="text-5xl font-black leading-tight md:text-7xl">Royal Enfield Bike Showcase</h1>
+          <p class="mt-6 max-w-2xl text-lg text-neutral-200 md:text-xl">
+            Explore famous Royal Enfield models and try different bike colors using a simple interactive color picker.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#catalog" class="rounded-full bg-red-700 px-7 py-3 font-bold hover:bg-red-800">View Models</a>
+            <a href="#customize" class="rounded-full border border-white px-7 py-3 font-bold hover:bg-white hover:text-black">Customize Color</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="bg-neutral-950 px-5 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 max-w-2xl">
+          <p class="font-bold uppercase tracking-[0.25em] text-red-500">Model Catalog</p>
+          <h2 class="mt-3 text-4xl font-black md:text-5xl">Choose Your Ride</h2>
+          <p class="mt-4 text-neutral-300">Click on any model to see its details in the showcase panel.</p>
+        </div>
+
+        <div id="modelList" class="grid gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
+
+        <div class="mt-10 border-l-4 border-red-700 bg-neutral-900 p-6" id="modelDetails">
+          <h3 class="text-2xl font-black" id="detailName">Classic 350</h3>
+          <p class="mt-2 text-neutral-300" id="detailText">A retro-styled cruiser known for comfort, relaxed riding, and timeless Royal Enfield looks.</p>
+          <div class="mt-5 grid gap-4 text-sm sm:grid-cols-3">
+            <p><span class="block text-neutral-500">Engine</span><strong id="detailEngine">349 cc</strong></p>
+            <p><span class="block text-neutral-500">Style</span><strong id="detailStyle">Classic Cruiser</strong></p>
+            <p><span class="block text-neutral-500">Best For</span><strong id="detailUse">City and touring</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="customize" class="bg-stone-100 px-5 py-20 text-neutral-950">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 max-w-2xl">
+          <p class="font-bold uppercase tracking-[0.25em] text-red-700">Color Picker</p>
+          <h2 class="mt-3 text-4xl font-black md:text-5xl">Design Your Royal Enfield</h2>
+          <p class="mt-4 text-neutral-700">Select a color below and the bike preview will change instantly.</p>
+        </div>
+
+        <div class="overflow-hidden bg-white p-6 shadow-xl md:p-10">
+          <div class="bike-preview" id="bikePreview">
+            <div class="wheel wheel-left"></div>
+            <div class="wheel wheel-right"></div>
+            <div class="mudguard mudguard-left"></div>
+            <div class="mudguard mudguard-right"></div>
+            <div class="fork"></div>
+            <div class="pipe"></div>
+            <div class="engine"></div>
+            <div class="bike-body">
+              <div class="tank-shine"></div>
+            </div>
+            <div class="seat"></div>
+            <div class="handle"></div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <button class="color-btn h-12 w-12 rounded-full border-4 border-neutral-950 bg-red-800" data-color="#991b1b" data-name="Royal Red" aria-label="Royal Red"></button>
+            <button class="color-btn h-12 w-12 rounded-full border-4 border-transparent bg-black" data-color="#111111" data-name="Stealth Black" aria-label="Stealth Black"></button>
+            <button class="color-btn h-12 w-12 rounded-full border-4 border-transparent bg-emerald-800" data-color="#065f46" data-name="Forest Green" aria-label="Forest Green"></button>
+            <button class="color-btn h-12 w-12 rounded-full border-4 border-transparent bg-blue-900" data-color="#1e3a8a" data-name="Midnight Blue" aria-label="Midnight Blue"></button>
+            <button class="color-btn h-12 w-12 rounded-full border-4 border-transparent bg-yellow-600" data-color="#ca8a04" data-name="Desert Gold" aria-label="Desert Gold"></button>
+            <div class="ml-0 text-lg font-bold sm:ml-4">Selected Color: <span id="colorName" class="text-red-700">Royal Red</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="bg-neutral-950 px-5 py-20">
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="font-bold uppercase tracking-[0.25em] text-red-500">About This Project</p>
+        <h2 class="mt-3 text-4xl font-black">Simple HTML Bike Showcase</h2>
+        <p class="mt-5 text-lg text-neutral-300">
+          This website is made with only one HTML file. It uses basic HTML, Tailwind CSS classes, custom CSS, and simple JavaScript for model selection and color changing.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-black px-5 py-6 text-center text-sm text-neutral-400">
+    <p>Student Project | Royal Enfield Bike Showcase</p>
+  </footer>
+
+  <script>
+    const models = [
+      {
+        name: "Classic 350",
+        engine: "349 cc",
+        style: "Classic Cruiser",
+        use: "City and touring",
+        text: "A retro-styled cruiser known for comfort, relaxed riding, and timeless Royal Enfield looks."
+      },
+      {
+        name: "Bullet 350",
+        engine: "349 cc",
+        style: "Legendary Roadster",
+        use: "Daily rides",
+        text: "One of the most iconic Royal Enfield bikes with a simple design and strong road presence."
+      },
+      {
+        name: "Hunter 350",
+        engine: "349 cc",
+        style: "Street Bike",
+        use: "College and city rides",
+        text: "A compact and modern Royal Enfield made for easy handling in city traffic."
+      },
+      {
+        name: "Meteor 350",
+        engine: "349 cc",
+        style: "Cruiser",
+        use: "Long rides",
+        text: "A comfortable cruiser with relaxed seating, smooth performance, and touring-friendly design."
+      },
+      {
+        name: "Himalayan",
+        engine: "452 cc",
+        style: "Adventure",
+        use: "Off-road trips",
+        text: "An adventure bike built for mountains, rough roads, and long-distance exploration."
+      },
+      {
+        name: "Interceptor 650",
+        engine: "648 cc",
+        style: "Modern Classic",
+        use: "Highway riding",
+        text: "A twin-cylinder modern classic with strong performance and a clean old-school design."
+      }
+    ];
+
+    const modelList = document.getElementById("modelList");
+    const detailName = document.getElementById("detailName");
+    const detailText = document.getElementById("detailText");
+    const detailEngine = document.getElementById("detailEngine");
+    const detailStyle = document.getElementById("detailStyle");
+    const detailUse = document.getElementById("detailUse");
+
+    function showModel(index) {
+      const selectedModel = models[index];
+      detailName.textContent = selectedModel.name;
+      detailText.textContent = selectedModel.text;
+      detailEngine.textContent = selectedModel.engine;
+      detailStyle.textContent = selectedModel.style;
+      detailUse.textContent = selectedModel.use;
+
+      document.querySelectorAll(".catalog-card").forEach((card) => {
+        card.classList.remove("border-red-600");
+        card.classList.add("border-neutral-800");
+      });
+
+      const activeCard = document.querySelector(`[data-index="${index}"]`);
+      activeCard.classList.remove("border-neutral-800");
+      activeCard.classList.add("border-red-600");
+    }
+
+    models.forEach((model, index) => {
+      const card = document.createElement("button");
+      card.className = "catalog-card border border-neutral-800 bg-neutral-900 p-6 text-left hover:border-red-600";
+      card.setAttribute("data-index", index);
+      card.innerHTML = `
+        <span class="text-sm font-bold uppercase tracking-widest text-red-500">Royal Enfield</span>
+        <h3 class="mt-3 text-2xl font-black">${model.name}</h3>
+        <p class="mt-3 text-sm text-neutral-300">${model.style} | ${model.engine}</p>
+      `;
+      card.addEventListener("click", () => showModel(index));
+      modelList.appendChild(card);
+    });
+
+    showModel(0);
+
+    const bikePreview = document.getElementById("bikePreview");
+    const colorName = document.getElementById("colorName");
+    const colorButtons = document.querySelectorAll(".color-btn");
+
+    colorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedColor = button.getAttribute("data-color");
+        const selectedName = button.getAttribute("data-name");
+        bikePreview.style.setProperty("--bike-color", selectedColor);
+        colorName.textContent = selectedName;
+
+        colorButtons.forEach((btn) => btn.classList.replace("border-neutral-950", "border-transparent"));
+        button.classList.replace("border-transparent", "border-neutral-950");
+      });
+    });
+  </script>
+</body>
+</html>
